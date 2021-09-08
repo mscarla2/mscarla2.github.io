@@ -1,45 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome</title>
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        <header>
-            <div class="logo-container">
-                    <h2 class="logo">Welcome!</h2>
+
+	<head>
+		<meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+		<title>Welcome</title>
+    <script src="main.js"></script>
+	</head>
+
+	<body>
+    <div class="tabs is-medium">
+      <ul>
+        <li class="is-active" id="home"><a>Home</a></li>
+        <li id="about"><a href="pages/about.html">About</a></li>
+        <li id="resume"><a href="Marco_Scarlata_Resume.pdf">Resume</a></li>
+        <li id="github"><a>Github</a></li>
+        <li id="linkedin"><a>LinkedIn</a></li>
+      </ul>
+    </div>
+    <section class="section">
+      <h1 class="title">Welcome to my page!</h1>
+      <p>This website is still currently under construction. With that said please visit the Github and LinkedIn links above!</p>
+      <p>Below you will find some Bulma placeholders</p>
+      <br>
+      <div class="columns">
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+              </figure>
             </div>
-            <nav class="nav-control">
-                <ul class="nav-links">
-                    <li ><a class="nav-link" href="./Marco_Scarlata_Resume.pdf">Resume</a></li>
-                    <li ><a class="nav-link" href="https://github.com/mscarla2">GitHub</a></li>
-                    <li ><a class="nav-link" href="https://www.linkedin.com/in/marco-scarlata">LinkedIn</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <h1>Welcome to my portfolio!</h1>
-            <hr>
-            <p>Currently this page is in progress and so you won't see any new additions for atleast until the website is finished. <br/><br/>
-               With that said, I encourage you to check out the links above to both get in touch with me as well as take a glimpse into the type of work that I've done over the years.</p>
-            <br />
-            <ol class="todo-list">
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-                <li>Things</li>
-            </ol>
-        </main>
-    </body>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">John Smith</p>
+                  <p class="subtitle is-6">@johnsmith</p>
+                </div>
+              </div>
+          
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column"></div>
+        <div class="column"></div>
+      </div>
+    </section>
+	</body>
 </html>
