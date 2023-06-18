@@ -1,63 +1,205 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-
-	<head>
-		<meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-		<title>Welcome</title>
-    <script src="main.js"></script>
-	</head>
-
-	<body>
-    <div class="tabs is-medium">
-      <ul>
-        <li class="is-active" id="home"><a>Home</a></li>
-        <li id="about"><a href="pages/about.html">About</a></li>
-        <li id="resume"><a href="Marco_Scarlata_Resume.pdf">Resume</a></li>
-        <li id="github"><a href="https://www.github.com/mscarla2">Github</a></li>
-        <li id="linkedin"><a href="https://www.linkedin.com/in/marco-scarlata">LinkedIn</a></li>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/4636762066.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    .hero .title {
+      margin-bottom: 0.5rem;
+    }
+    .hero .subtitle {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside id="sidebar" class="sidebar">
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="#" class="menu-link">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+            <span class="text">Home</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link">
+            <span class="icon">
+              <i class="fas fa-blog"></i>
+            </span>
+            <span class="text">Blog</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link">
+            <span class="icon">
+              <i class="fas fa-info-circle"></i>
+            </span>
+            <span class="text">About</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link">
+            <span class="icon">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="text">Contact</span>
+          </a>
+        </li>
       </ul>
-    </div>
-    <section class="section">
-      <h1 class="title">Welcome to my page!</h1>
-      <p>Currently this page is in progress and so you won't see any new additions for atleast until the website is finished.</p>
-      <p>With that said, I encourage you to check out the links above to both get in touch with me as well as take a glimpse into the type of work that I've done over the years.</p>
-      <br>
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+    </aside>
+
+    <div id="restofpage" class="content">
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title is-1">Welcome to My Awesome Blog!</h1>
+            <h2 class="subtitle is-3">
+              Exploring the world of technology, science, and creativity.
+            </h2>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="title is-4">Latest Blog Posts</h2>
+        <div class="container">
+          
+          <div class="columns is-multiline">
+            <div class="column is-one-third">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-3by2">
+                    <img src="images/blog1.jpg" alt="Blog Post 1" />
                   </figure>
                 </div>
-                <div class="media-content">
-                  <p class="title is-4">John Smith</p>
-                  <p class="subtitle is-6">@johnsmith</p>
+                <div class="card-content">
+                  <p class="title is-5">
+                    10 Tips for Effective Time Management
+                  </p>
+                  <div class="content">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nulla nec finibus odio. Quisque lacinia interdum aliquet.
+                    </p>
+                    <p><a href="#">Read more</a></p>
+                  </div>
                 </div>
               </div>
-          
-              <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            </div>
+            <div class="column is-one-third">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-3by2">
+                    <img src="images/blog2.jpg" alt="Blog Post 2" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <p class="title is-5">
+                    The Future of Artificial Intelligence
+                  </p>
+                  <div class="content">
+                    <p>
+                      Curabitur eget tristique ipsum. Phasellus vestibulum dui
+                      tellus, et hendrerit est finibus eget.
+                    </p>
+                    <p><a href="#">Read more</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column is-one-third">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-3by2">
+                    <img src="images/blog3.jpg" alt="Blog Post 3" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <p class="title is-5">
+                    Unlocking Your Creativity: Tips and Techniques
+                  </p>
+                  <div class="content">
+                    <p>
+                      Maecenas eu iaculis urna, non consectetur orci. Sed
+                      lacinia felis non justo semper cursus.
+                    </p>
+                    <p><a href="#">Read more</a></p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="column"></div>
-        <div class="column"></div>
-      </div>
-    </section>
-	</body>
+      </section>
+
+      <section class="section">
+        <h2 class="title is-4">About Me</h2>
+        <div class="container">
+          
+          <div class="columns">
+            <div class="column is-one-third">
+              <figure class="image is-4by3">
+                <img src="images/profile.jpg" alt="Profile Picture" />
+              </figure>
+            </div>
+            <div class="column">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                aliquam tincidunt efficitur. In vitae efficitur purus. Nam eu
+                hendrerit velit. Vivamus et elit libero. Mauris pharetra
+                rhoncus magna, ac gravida lectus maximus sed. Fusce congue
+                ipsum ligula, id hendrerit mi sollicitudin vel.
+              </p>
+              <p>
+                Phasellus et quam eu purus dapibus faucibus vel ac lorem.
+                Aliquam egestas tempus semper. Nullam mattis purus id
+                fermentum ultricies. Fusce ac nisl odio. Suspendisse rhoncus
+                erat mi, a vulputate dolor maximus vitae.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="title is-4">Connect with Me</h2>
+        <div class="container">
+          <div class="columns">
+            <div class="column is-half">
+              <div class="content">
+                <p><strong>Email:</strong> contact@example.com</p>
+                <p><strong>Phone:</strong> +1 123-456-7890</p>
+                <p><strong>Location:</strong> City, Country</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="content">
+                <p><strong>Follow Me:</strong></p>
+                <ul>
+                  <li>
+                    <a href="https://www.twitter.com/example">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/in/example">LinkedIn</a>
+                  </li>
+                  <li><a href="https://www.github.com/example">GitHub</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="javascript/nav.js"></script>
+</body>
 </html>
