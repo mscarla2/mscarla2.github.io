@@ -5,6 +5,11 @@ body {
     overflow: hidden;
   }
   
+.subtitle {
+  padding-top: 30px;
+  padding-left: 50px;
+}
+
   .container {
     display: flex;
     height: 100%;
