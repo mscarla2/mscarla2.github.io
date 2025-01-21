@@ -3,7 +3,7 @@ let blogPosts = [];
 // Function to fetch blog filenames from the Blogs directory
 async function fetchBlogFiles() {
   try {
-    const response = await fetch('/Blogs/index.json');
+    const response = await fetch('../blogs/list.json');
     if (!response.ok) throw new Error(`Failed to fetch blog index file`);
     const filenames = await response.json();
     return filenames;
