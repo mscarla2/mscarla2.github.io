@@ -3,14 +3,15 @@
 
 <head>
   <meta charset="utf-8">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <title>Blog</title>
   <script src="https://kit.fontawesome.com/4636762066.js" crossorigin="anonymous"></script>
-  <script src="../javascript/main.js"></script>
+  <link rel="stylesheet" href="../css/main.css"> <!-- Optional for custom styling -->
 </head>
 
 <body>
+  <!-- Navigation Bar -->
   <div class="tabs is-medium">
     <ul>
       <li id="home"><a href="../index.html">Home</a></li>
@@ -22,9 +23,23 @@
     </ul>
   </div>
 
+  <!-- Blog Posts Section -->
   <section class="section">
-    <h1 class="title">Blog</h1>
-    <div id="blog-posts"></div>
+    <div class="container">
+      <h1 class="title">Blog</h1>
+      <p class="subtitle">Explore my latest posts below.</p>
+      
+      <!-- Loader (shown while posts are loading) -->
+      <div id="loader" class="has-text-centered">
+        <span class="icon is-large">
+          <i class="fas fa-spinner fa-pulse"></i>
+        </span>
+        <p>Loading posts...</p>
+      </div>
+
+      <!-- Blog Posts Container -->
+      <div id="blog-posts"></div>
+    </div>
   </section>
 
   <script src="../javascript/blog.js"></script>
