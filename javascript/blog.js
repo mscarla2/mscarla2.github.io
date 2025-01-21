@@ -18,16 +18,25 @@ async function loadBlogPosts() {
   const filenames = await fetchBlogFiles();
 
   if (filenames.length === 0) {
-    console.error('No blog files found or failed to load.');
+    console.error("No blog files found or failed to load.");
     hideLoader(); // Ensure the loader disappears even on error
     return;
   }
 
   for (const filename of filenames) {
     try {
-      const response = await fetch(`/Blogs/${filename}`);
+      const response = await fetch(`../blogs/${filename}`);
       if (!response.ok) throw new Error(`Failed to fetch ${filename}`);
       const post = await response.json();
+
+      // Fetch the contentFile (Markdown content)
+      if (post.contentFile) {
+        const contentResponse = await fetch(post.contentFile);
+        if (!contentResponse.ok) throw new Error(`Failed to fetch ${post.contentFile}`);
+        const markdownContent = await contentResponse.text();
+        post.metadata.content = markdownContent; // Replace content in metadata with the Markdown
+      }
+
       blogPosts.push(post);
     } catch (error) {
       console.error(`Error loading blog post ${filename}:`, error);
@@ -54,14 +63,15 @@ function hideLoader() {
 
 // Function to generate HTML for a single blog post (collapsed view)
 function createCollapsedBlogPostHTML(post) {
+  const content = marked.parse(post.metadata.content);
   return `
-    <div class="card" data-id="${post.title}">
+    <div class="card" data-id="${post.metadata.title}">
       <header class="card-header">
-        <p class="card-header-title">${post.title}</p>
+        <p class="card-header-title">${post.metadata.title}</p>
       </header>
       <div class="card-content is-hidden">
-        <div class="content">${post.content}</div>
-        <p class="subtitle">Posted on: ${post.date}</p>
+        <div class="content is-medium">${content}</div>
+        <p class="subtitle">Posted on: ${post.metadata.date}</p>
       </div>
     </div>
   `;

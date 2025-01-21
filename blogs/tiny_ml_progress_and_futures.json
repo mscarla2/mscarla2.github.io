@@ -1,6 +1,11 @@
 {
-    "title": "Review of: Tiny Machine Learning: Progress and Futures (Lin et al., MIT, 2024)",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "author": "John Smith",
-    "date": "June 18, 2023"
-  }
+    "metadata": {
+      "title": "Review of: Tiny Machine Learning: Progress and Futures (Lin et al., MIT, 2024)",
+      "author": "Marco Scarlata",
+      "date": "January 20th, 2025",
+      "tags": ["TinyML", "Machine Learning", "IoT", "Review"],
+      "category": "Academic Reviews"
+    },
+
+    "contentFile": "../blogs/content/tiny_ml_progress_and_futures.md"
+}
