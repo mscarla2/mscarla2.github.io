@@ -3,22 +3,29 @@ let blogPosts = [];
 // Function to fetch blog filenames from the Blogs directory
 async function fetchBlogFiles() {
   try {
-    const response = await fetch("../blogs/list.json");
-    if (!response.ok) throw new Error("Failed to fetch blog filenames.");
+    const response = await fetch('/Blogs/index.json');
+    if (!response.ok) throw new Error(`Failed to fetch blog index file`);
     const filenames = await response.json();
     return filenames;
   } catch (error) {
-    console.error("Error fetching blog filenames:", error);
-    return [];
+    console.error('Error fetching blog files:', error);
+    return []; // Return an empty array on error
   }
 }
 
 // Function to fetch and load blog posts
 async function loadBlogPosts() {
   const filenames = await fetchBlogFiles();
+
+  if (filenames.length === 0) {
+    console.error('No blog files found or failed to load.');
+    hideLoader(); // Ensure the loader disappears even on error
+    return;
+  }
+
   for (const filename of filenames) {
     try {
-      const response = await fetch(`../blogs/${filename}`);
+      const response = await fetch(`/Blogs/${filename}`);
       if (!response.ok) throw new Error(`Failed to fetch ${filename}`);
       const post = await response.json();
       blogPosts.push(post);
@@ -26,6 +33,7 @@ async function loadBlogPosts() {
       console.error(`Error loading blog post ${filename}:`, error);
     }
   }
+
   renderCollapsedBlogPosts();
   addClickListeners();
   hideLoader();
