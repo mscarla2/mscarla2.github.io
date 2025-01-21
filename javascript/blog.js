@@ -28,6 +28,20 @@ async function loadBlogPosts() {
   }
   renderCollapsedBlogPosts();
   addClickListeners();
+  hideLoader();
+}
+
+// Function to hide the loader and show the blog posts
+function hideLoader() {
+  const loader = document.getElementById("loader");
+  const blogPostsContainer = document.getElementById("blog-posts");
+
+  if (loader && blogPostsContainer) {
+    setTimeout(() => {
+      loader.style.display = "none"; // Hide the loader
+      blogPostsContainer.style.display = "block"; // Show the blog posts
+    }, 400); // 400ms delay
+  }
 }
 
 // Function to generate HTML for a single blog post (collapsed view)
