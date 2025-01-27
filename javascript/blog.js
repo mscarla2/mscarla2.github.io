@@ -71,7 +71,7 @@ function createCollapsedBlogPostHTML(post) {
       </header>
       <div class="card-content is-hidden">
         <div class="content is-medium">${content}</div>
-        <p class="subtitle">Posted on: ${post.metadata.date}</p>
+        <p class="subtitle">Posted on: ${post.metadata.upload_date} (Updated: ${post.metadata.update_date})</p>
       </div>
     </div>
   `;
