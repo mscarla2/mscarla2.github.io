@@ -16,28 +16,30 @@
             <h1 class="title has-text-centered">Marco Scarlata Resume</h1>
             <div class="columns is-multiline is-centered">
                 <!-- Skills Section -->
-                <div class="column is-one-third" data-aos="fade-up">
+                <div class="column is-one-thirds" data-aos="fade-up">
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">Skills</p>
                         </header>
                         <div class="card-content">
                             <ul>
-                                <li><strong>Languages:</strong> C++, Python, Java, JavaScript, HTML/CSS, SQL</li>
-                                <li><strong>Frameworks:</strong> gRPC, Protocol Buffers, Flask, Django, React, Svelte,
+                                <li id="resume-id"><strong>Languages:</strong> C++, Python, Java, JavaScript, HTML/CSS, SQL</li>
+                                <br />
+                                <li id="resume-id"><strong>Frameworks:</strong> gRPC, Protocol Buffers, Flask, Django, React, Svelte,
                                     Bulma</li>
                                 <br />
-                                <li><strong>Libraries:</strong> TFLite, Node.js, Selenium, SpaCy, Keras, Pandas, NumPy,
+                                <li id="resume-id"><strong>Libraries:</strong> TFLite, Node.js, Selenium, SpaCy, Keras, Pandas, NumPy,
                                     NLTK</li>
                                 <br />
-                                <li><strong>Tools:</strong> Build, Bazel, BigQuery, Bash, Git, Kafka, DynamoDB</li>
+                                <li id="resume-id"><strong>Tools:</strong> Build, Bazel/Blaze, BigQuery, Bash, Git, Kafka, DynamoDB
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <!-- Chart Section -->
-                <div class="column is-one-third" data-aos="fade-up">
+                <div class="column is-one-thirds" data-aos="fade-up">
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">Skills Overview</p>
@@ -47,46 +49,172 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Experience Section -->
-                <div class="column is-two-thirds" data-aos="fade-up">
+                <!-- Education Section -->
+                <div class="column is-one-thirds" data-aos="fade-up">
                     <div class="card">
                         <header class="card-header">
-                            <p class="card-header-title">Experience</p>
+                            <p class="card-header-title">Education</p>
+                        </header>
+                        <div class="card-content">
+                            <h2 style="text-align:left;" class="subtitle is-medium">University of Rochester
+                            </h2>
+                            <p style="text-align:left;">
+                                <strong>BA in Computer Science </strong>
+                                <span style="float:right;">
+                                    <em>Aug 2018 – May 2022</em>
+                                </span>
+                            </p>
+                            <br />
+                            <ul>
+                                <li id="resume-id"><strong>Major GPA:</strong> 3.5/4.0 – Consecutive Dean’s List Recipient</li>
+                                <li id="resume-id"><strong>Relevant Courses:</strong> Data Structures & Algorithms | Formal Systems &
+                                    Computation | Web Programming | Human
+                                    Computer Interaction | Intro to Artificial Intelligence | Database Systems | Natural
+                                    Language Processing</li>
+                                <li id="resume-id">Dean's Scholarship & Rochester National Grant Awardee</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Experience Section -->
+                <div class="column is-full" data-aos="fade-up">
+                    <div class="card">
+                        <header class="card-header">
+                            <h1 class="card-header-title">Experience</h1>
                         </header>
                         <div class="card-content">
                             <div>
-                                <h3 class="subtitle">Software Engineer</h3>
-                                <p><strong>Google, San Francisco, CA</strong></p>
-                                <p><em>Sep 2022 – Present</em></p>
+                                <h3 style="text-align:left;" class="subtitle">
+                                    <strong>Google</strong>
+                                    <span style="float:right;">
+                                        <em>Software Engineer</em>
+                                    </span>
+                                </h3>
+                                <p style="text-align:left;">
+                                    <strong>San Francisco, CA</strong>
+                                    <span style="float:right;">
+                                        <em>Sep 2022 - Present</em>
+                                    </span>
+                                </p>
+                                <p><i>Pixel Watch Device Algorithms</i></p>
+                                <br />
                                 <ul>
-                                    <li>Built low-latency machine learning algorithms with C++ and TFLite.</li>
-                                    <li>Optimized off-body detection algorithms, reducing power usage and false
-                                        positives.</li>
-                                    <li>Developed scalable C++ solutions for Google Cloud, impacting 500,000+ users.
+                                    <li id="resume-id">Building an embedded, low latency Machine learning algorithm using
+                                        <strong>C++</strong>, <strong>TFLite</strong> and <strong>Python</strong>
+                                    </li>
+                                    <li id="resume-id">Augmentation and code ownership of the <a
+                                            href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_LOW_LATENCY_OFFBODY_DETECT">Low
+                                            Latency Off-body Detection</a> Sensor algorithm through using
+                                        <strong>C++</strong>
+                                    </li>
+                                    <li id="resume-id">Decreased the latency and LED falsing rates of Low Latency Off-body Detection, a
+                                        core touch-point of many different
+                                        algorithms leading to a statistically significant decrease in power usage and
+                                        falsing rates
+                                    </li>
+                                </ul>
+                                <br />
+                                <p><i>Cloud Asset Inventory & Search</i></p>
+                                <br />
+                                <ul>
+                                    <li id="resume-id">Productionized a reliable, scalable solution in <strong>C++</strong> for <a
+                                            href="https://cloud.google.com/asset-inventory">Cloud Asset Inventory</a> to
+                                        attach structured, enhanced metadata
+                                        into our centralized data warehouse for cloud-managed assets, impacting
+                                        <strong>over 90%</strong> of GCP Resources and increasing
+                                        user adoption YoY with a current user base of over 500,000 active users
+                                    </li>
+                                    <li id="resume-id">Assisted in launching Asset Enrichment end to end into Asset Query System using
+                                        <strong>C++, SQL & Spanner</strong>, leveraging
+                                        enriched metadata to deliver efficient query results of <strong>more than
+                                            275</strong> GCP asset types for SCC customers
+                                    </li>
+                                    <li id="resume-id">Onboarded a Google Cloud asset type in a cross-team and cross-functional effort
+                                        using <strong>C++, Python & Spanner</strong></li>
+                                    <li id="resume-id">Drove a cross-team engagement between EngProd and Cloudtop in augmenting
+                                        Cloudtop’s workflow runner using
+                                        <strong>gRPC, Borg & Python</strong>, thereby reducing development time by
+                                        <strong>25%</strong>, saving the equivalent of <strong>10 SWE weeks</strong>
                                     </li>
                                 </ul>
                             </div>
                             <hr>
                             <div>
-                                <h3 class="subtitle">Software Engineering Intern</h3>
-                                <p><strong>OpenSesame, Portland, OR</strong></p>
-                                <p><em>Jun 2020 – Aug 2020</em></p>
+                                <h3 style="text-align:left;" class="subtitle">
+                                    <strong>OpenSesame</strong>
+                                    <span style="float:right;">
+                                        <em>Software Engineering Intern</em>
+                                    </span>
+                                </h3>
+                                <p style="text-align:left;">
+                                    <strong>Portland, OR</strong>
+                                    <span style="float:right;">
+                                        <em>Jun 2020 – Aug 2020</em>
+                                    </span>
+                                </p>
+                                <p><i>Front-End Division</i></p>
+                                <br />
                                 <ul>
-                                    <li>Enhanced dropdown features using Angular and TypeScript.</li>
-                                    <li>Resolved bugs affecting cross-browser functionality through rigorous testing.
+                                    <li id="resume-id">Extended language drop-down feature to include search selection for courses
+                                        through <strong>Angular and TypeScript</strong></li>
+                                    <li id="resume-id">Extrapolated multiple burn-down processes with Behat, API and Unit tests
+                                        resulting in locating <strong>over 6</strong> different bugs
+                                        spawned from the most recent sprints, resolving the bug which prevented the
+                                        landing page from loading for IE users
+                                    </li>
+                                    <li id="resume-id">Built out E2E tests through replicating over 10 deprecated legacy tests from
+                                        Drupal to <strong>Angular & Selenium</strong></li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div>
+                                <h3 style="text-align:left;" class="subtitle">
+                                    <strong>University of Rochester</strong>
+                                    <span style="float:right;">
+                                        <em>Teaching Assistant & CETL Tutor</em>
+                                    </span>
+                                </h3>
+                                <p style="text-align:left;">
+                                    <strong>Rochester, NY</strong>
+                                    <span style="float:right;">
+                                        <em>Jun 2019 – Aug 2019</em>
+                                    </span>
+                                </p>
+                                <br />
+                                <ul>
+                                    <li id="resume-id">Analyzed the purchase history of <strong>100,000+</strong> users buying coupons
+                                        by regression analysis using Python, Pandas,
+                                        <strong>NumPy</strong> and <strong>PyTorch</strong>, thereby locating an
+                                        under-marketed sector in sales that led to a 10% increase in revenue
+                                    </li>
+                                    <li id="resume-id">Launched an MVP module-based recommender system with caching for an ecommerce
+                                        platform called BananaMall with
+                                        <strong>10,000+</strong> downloads on Playstore and <strong>100,000+</strong>
+                                        users using <strong>Python, SKLearn and DynamoDB</strong>
                                     </li>
                                 </ul>
                             </div>
                             <hr>
                             <div>
-                                <h3 class="subtitle">Machine Learning Intern</h3>
-                                <p><strong>ANDSystems, Ulaanbaatar, Mongolia</strong></p>
-                                <p><em>Jun 2019 – Aug 2019</em></p>
+                                <h3 style="text-align:left;" class="subtitle">
+                                    <strong>ANDSystems</strong>
+                                    <span style="float:right;">
+                                        <em>Machine Learning Intern</em>
+                                    </span>
+                                </h3>
+                                <p><i>Machine Learning Team</i></p>
+                                <br />
                                 <ul>
-                                    <li>Launched a recommender system with 100,000+ users, increasing revenue by 10%.
+                                    <li id="resume-id">Analyzed the purchase history of <strong>100,000+</strong> users buying coupons
+                                        by regression analysis using Python, Pandas,
+                                        <strong>NumPy</strong> and <strong>PyTorch</strong>, thereby locating an
+                                        under-marketed sector in sales that led to a 10% increase in revenue
                                     </li>
-                                    <li>Analyzed user data using Python, Pandas, and NumPy.</li>
+                                    <li id="resume-id">Launched an MVP module-based recommender system with caching for an ecommerce
+                                        platform called BananaMall with
+                                        <strong>10,000+</strong> downloads on Playstore and <strong>100,000+</strong>
+                                        users using <strong>Python, SKLearn and DynamoDB</strong>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -99,28 +227,23 @@
                         <header class="card-header">
                             <p class="card-header-title">Projects</p>
                         </header>
-                        <div class="card-content">
-                            <ul>
-                                <li>
-                                    <strong>Trading Algorithm:</strong> Built a mock quantitative trading platform with
-                                    TensorFlow and Python, incorporating strategies like Monte Carlo simulations and VIX
-                                    calculations.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Education Section -->
-                <div class="column is-full" data-aos="fade-up">
-                    <div class="card">
-                        <header class="card-header">
-                            <p class="card-header-title">Education</p>
-                        </header>
                         <div class="card-content">
-                            <p><strong>University of Rochester</strong>, Rochester, NY</p>
-                            <p><em>B.S. in Computer Science, Minor in Psychology (Aug 2018 – May 2022)</em></p>
-                            <p>Dean’s List Recipient, 3.5 GPA</p>
+                            <h3 style="text-align:left;" class="subtitle">
+                                <strong>Trading Algorithm</strong>
+                                <span style="float:right;">
+                                    <em>Tensorflow, Python, MySQL</em>
+                                </span>
+                            </h3>
+                            <br />
+                            <ul>
+                                <li id="resume-id">Developed a mock quantitative investment platform that utilizes Tensorflow to
+                                    deliver accurate trading predictions
+                                </li>
+                                <li id="resume-id">Includes Python quantitative trading strategies including Pattern Recognition,
+                                    Commodity Trading Advisor, Monte
+                                    Carlo, Options Straddle, Heikin-Ashi, Pair Trading and VIX Calculator</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

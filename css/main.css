@@ -31,3 +31,24 @@
   text-decoration-color: #2656b7;
   max-height: 300px;
 }
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#resume-id li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+#resume-id li:before {
+  content: "•";
+  padding-right: 5px;
+}
+
+br {
+  display: block;
+  content: "";
+  margin-top: 0.7em;
+}
