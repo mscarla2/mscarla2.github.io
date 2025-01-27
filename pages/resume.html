@@ -1,0 +1,136 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Resume</title>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <section class="section" id="resume">
+        <div class="container">
+            <h1 class="title has-text-centered">Marco Scarlata Resume</h1>
+            <div class="columns is-multiline is-centered">
+                <!-- Skills Section -->
+                <div class="column is-one-third" data-aos="fade-up">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Skills</p>
+                        </header>
+                        <div class="card-content">
+                            <ul>
+                                <li><strong>Languages:</strong> C++, Python, Java, JavaScript, HTML/CSS, SQL</li>
+                                <li><strong>Frameworks:</strong> gRPC, Protocol Buffers, Flask, Django, React, Svelte,
+                                    Bulma</li>
+                                <br />
+                                <li><strong>Libraries:</strong> TFLite, Node.js, Selenium, SpaCy, Keras, Pandas, NumPy,
+                                    NLTK</li>
+                                <br />
+                                <li><strong>Tools:</strong> Build, Bazel, BigQuery, Bash, Git, Kafka, DynamoDB</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="column is-one-third" data-aos="fade-up">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Skills Overview</p>
+                        </header>
+                        <div class="card-content">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="column is-two-thirds" data-aos="fade-up">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Experience</p>
+                        </header>
+                        <div class="card-content">
+                            <div>
+                                <h3 class="subtitle">Software Engineer</h3>
+                                <p><strong>Google, San Francisco, CA</strong></p>
+                                <p><em>Sep 2022 – Present</em></p>
+                                <ul>
+                                    <li>Built low-latency machine learning algorithms with C++ and TFLite.</li>
+                                    <li>Optimized off-body detection algorithms, reducing power usage and false
+                                        positives.</li>
+                                    <li>Developed scalable C++ solutions for Google Cloud, impacting 500,000+ users.
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div>
+                                <h3 class="subtitle">Software Engineering Intern</h3>
+                                <p><strong>OpenSesame, Portland, OR</strong></p>
+                                <p><em>Jun 2020 – Aug 2020</em></p>
+                                <ul>
+                                    <li>Enhanced dropdown features using Angular and TypeScript.</li>
+                                    <li>Resolved bugs affecting cross-browser functionality through rigorous testing.
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div>
+                                <h3 class="subtitle">Machine Learning Intern</h3>
+                                <p><strong>ANDSystems, Ulaanbaatar, Mongolia</strong></p>
+                                <p><em>Jun 2019 – Aug 2019</em></p>
+                                <ul>
+                                    <li>Launched a recommender system with 100,000+ users, increasing revenue by 10%.
+                                    </li>
+                                    <li>Analyzed user data using Python, Pandas, and NumPy.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="column is-full" data-aos="fade-up">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Projects</p>
+                        </header>
+                        <div class="card-content">
+                            <ul>
+                                <li>
+                                    <strong>Trading Algorithm:</strong> Built a mock quantitative trading platform with
+                                    TensorFlow and Python, incorporating strategies like Monte Carlo simulations and VIX
+                                    calculations.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="column is-full" data-aos="fade-up">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Education</p>
+                        </header>
+                        <div class="card-content">
+                            <p><strong>University of Rochester</strong>, Rochester, NY</p>
+                            <p><em>B.S. in Computer Science, Minor in Psychology (Aug 2018 – May 2022)</em></p>
+                            <p>Dean’s List Recipient, 3.5 GPA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../javascript/nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/chart.js"></script>
+</body>
+
+</html>
