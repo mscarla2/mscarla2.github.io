@@ -1,3 +1,5 @@
 [
-    "tiny_ml_progress_and_futures.json"
+    "tiny_ml_progress_and_futures.json",
+    "deepseek-llm.json",
+    "deepseek-r1.json"
   ]
