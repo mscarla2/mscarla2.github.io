@@ -2,7 +2,7 @@
 
 ## Welcome!
 
-Hey there — this is my personal portfolio. It’s a place for me to post thoughts, share projects, and point people toward things I’ve worked on. I update it when I feel like it, and structure wasn’t exactly a priority when I first threw it together — but it works.
+Hey there — this is my personal portfolio. It’s a place for me to post thoughts, share projects, and point people toward things I’ve been recently working on. I update it on a non-regular cadence, and as continuity wasn’t exactly a priority when I first threw it together, it'll inevitably be a bit muddled.
 
 ## Usage
 
