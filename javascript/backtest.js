@@ -1,159 +1,247 @@
-// Sample CSV data (date, close)
-const sampleCSV = `date,close
-2022-01-01,100
-2022-01-02,102
-2022-01-03,101
-2022-01-04,105
-2022-01-05,103
-2022-01-06,108
-2022-01-07,107
-2022-01-08,110
-2022-01-09,109
-2022-01-10,115
-`;
+const chartInstances = {};
 
-document.getElementById('downloadSample').onclick = function() {
-  const blob = new Blob([sampleCSV], { type: 'text/csv' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'sample.csv';
-  a.click();
-  URL.revokeObjectURL(url);
-};
-
-function runBacktest() {
-  const fileInput = document.getElementById('csvFile');
-  if (!fileInput.files.length) {
-    processData(sampleCSV);
-    return;
-  }
-  const file = fileInput.files[0];
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    processData(e.target.result);
-  };
-  reader.readAsText(file);
+// NEW: Helper function to get the computed value of a CSS variable
+function getCssVar(varName) {
+    // .trim() is important to remove any leading/trailing whitespace
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 }
 
-function processData(data) {
-  const priceData = parseCSV(data);
-  if (priceData.length === 0) {
-    alert('No valid data found!');
-    return;
-  }
-  const results = movingAverageStrategy(priceData, 3, 5); // Fast=3, Slow=5
-  plotResults(results, priceData);
-  showMetrics(results);
+function renderStrategyOptions() {
+  const select = document.getElementById("strategy-select");
+  if (!select) return;
+  select.innerHTML = Strategies.map(s =>
+    `<option value="${s.id}">${s.name}</option>`
+  ).join("");
+  renderStrategyParams();
 }
 
-function parseCSV(data) {
-  const lines = data.trim().split('\n');
-  if (lines.length < 2) return [];
-  return lines.slice(1).map(line => {
-    const [date, close] = line.split(',');
-    return { date: date.trim(), close: parseFloat(close) };
-  }).filter(x => !isNaN(x.close));
+function renderStrategyParams() {
+  const select = document.getElementById("strategy-select");
+  const paramsDiv = document.getElementById("strategy-params");
+  if (!select || !paramsDiv) return;
+  
+  const strategy = Strategies.find(s => s.id === select.value);
+  if (!strategy || !strategy.params) { 
+    paramsDiv.innerHTML = ""; 
+    return; 
+  }
+  
+  paramsDiv.innerHTML = strategy.params.map(p => `
+    <div class="form-group">
+      <label for="${p.id}">${p.label}</label>
+      <input type="${p.type}" id="${p.id}" value="${p.default}">
+    </div>
+  `).join("");
 }
 
-// Simple Moving Average Crossover Strategy
-function movingAverageStrategy(data, fastPeriod = 3, slowPeriod = 5) {
-  const equityCurve = [];
-  const trades = [];
-  let position = 0;
-  let entryPrice = 0;
-  let cash = 1000;
-  let shares = 0;
-  const fastMA = movingAverage(data.map(x => x.close), fastPeriod);
-  const slowMA = movingAverage(data.map(x => x.close), slowPeriod);
-  for (let i = 0; i < data.length; i++) {
-    if (i > 0 && fastMA[i-1] <= slowMA[i-1] && fastMA[i] > slowMA[i] && position === 0) {
-      position = 1;
-      entryPrice = data[i].close;
-      shares = cash / entryPrice;
-      cash = 0;
-      trades.push({ type: 'Buy', date: data[i].date, price: entryPrice });
-    } else if (i > 0 && fastMA[i-1] >= slowMA[i-1] && fastMA[i] < slowMA[i] && position === 1) {
-      position = 0;
-      cash = shares * data[i].close;
-      trades.push({ type: 'Sell', date: data[i].date, price: data[i].close });
-      shares = 0;
-    }
-    equityCurve.push(position === 1 ? shares * data[i].close : cash);
+function getDashboardConfig() {
+  const select = document.getElementById("strategy-select");
+  const strategy = Strategies.find(s => s.id === select.value);
+  let paramValues = {};
+
+  if (strategy && strategy.params) {
+    strategy.params.forEach(p => {
+      let val = document.getElementById(p.id)?.value;
+      paramValues[p.id] = p.type === "number" ? Number(val) : val;
+    });
   }
-  if (position === 1) {
-    cash = shares * data[data.length - 1].close;
-    trades.push({ type: 'Sell', date: data[data.length - 1].date, price: data[data.length - 1].close });
-    position = 0;
-    shares = 0;
-  }
-  const profit = cash - 1000;
-  const totalTrades = trades.length / 2;
-  const winTrades = trades.filter((t, idx) => t.type === 'Sell' && trades[idx-1]?.type === 'Buy' && t.price > trades[idx-1].price).length;
+  
   return {
-    equityCurve,
-    trades,
-    metrics: {
-      profit: profit.toFixed(2),
-      totalTrades,
-      winRate: totalTrades ? ((winTrades / totalTrades) * 100).toFixed(1) + '%' : 'N/A'
-    }
+    strategyObj: { ...strategy, params: paramValues },
+    asset: document.getElementById('asset')?.value,
+    startDate: document.getElementById('start-date')?.value,
+    endDate: document.getElementById('end-date')?.value,
+    apiKey: document.getElementById('api-key')?.value,
+    initialCapital: Number(document.getElementById('initial-capital')?.value) || 100000,
+    commission: Number(document.getElementById('commission')?.value) || 1,
   };
 }
 
-function movingAverage(arr, period) {
-  return arr.map((v, i) => {
-    if (i < period - 1) return null;
-    const slice = arr.slice(i - period + 1, i + 1);
-    return slice.reduce((a, b) => a + b, 0) / period;
-  });
+async function runBacktest() {
+  const config = getDashboardConfig();
+  if (!config.strategyObj.id) {
+    alert("Please select a strategy.");
+    return;
+  }
+  console.log("Running backtest with config:", config);
+  const results = await window.BacktestEngine.run(config);
+  console.log("Backtest results:", results);
+
+  document.getElementById("results-title").textContent =
+    `Backtest Results: ${config.strategyObj.name} on ${config.asset}`;
+
+  renderKPI(results);
+  renderCharts(results);
+  renderTradeLog(results.trades);
 }
 
-function plotResults(results, priceData) {
-  const ctx = document.getElementById('resultsChart').getContext('2d');
-  if (window.equityChart) window.equityChart.destroy();
-  window.equityChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: priceData.map(x => x.date),
-      datasets: [
-        {
-          label: 'Equity Curve',
-          data: results.equityCurve,
-          borderColor: 'blue',
-          fill: false,
-        },
-        {
-          label: 'Price',
-          data: priceData.map(x => x.close),
-          borderColor: 'gray',
-          fill: false,
-        }
-      ]
-    },
+function renderKPI(results) {
+  const area = document.getElementById("kpi-scorecard");
+
+  if (!results || !results.equityCurve || results.equityCurve.length === 0) {
+      area.innerHTML = `
+        <div class="kpi-card"><div class="label">Total Return</div><div class="value">N/A</div></div>
+        <div class="kpi-card"><div class="label">Max Drawdown</div><div class="value">N/A</div></div>
+        <div class="kpi-card"><div class="label">Sharpe Ratio</div><div class="value">N/A</div></div>
+        <div class="kpi-card"><div class="label">Profit Factor</div><div class="value">N/A</div></div>
+        <div class="kpi-card"><div class="label">Win Rate</div><div class="value">N/A</div></div>
+        <div class="kpi-card"><div class="label">Total Trades</div><div class="value">0</div></div>
+      `;
+      return;
+  }
+
+  const initialCapital = results.equityCurve[0].totalEquity;
+  const finalEquity = results.equityCurve[results.equityCurve.length - 1].totalEquity;
+  const totalReturn = ((finalEquity - initialCapital) / initialCapital) * 100;
+  
+  const profitFactor = results.metrics.profitFactor;
+  const profitFactorDisplay = profitFactor === Infinity ? 'Perfect' : profitFactor.toFixed(2);
+
+  area.innerHTML = `
+    <div class="kpi-card"><div class="label">Total Return</div>
+      <div class="value ${totalReturn >= 0 ? "positive" : "negative"}">${totalReturn.toFixed(2)}%</div></div>
+    <div class="kpi-card"><div class="label">Max Drawdown</div>
+      <div class="value negative">${results.metrics.maxDrawdown.toFixed(2)}%</div></div>
+    <div class="kpi-card"><div class="label">Sharpe Ratio</div>
+      <div class="value">${results.metrics.sharpeRatio.toFixed(2)}</div></div>
+    <div class="kpi-card"><div class="label">Profit Factor</div>
+      <div class="value">${profitFactorDisplay}</div></div>
+    <div class="kpi-card"><div class="label">Win Rate</div>
+      <div class="value">${results.metrics.winRate.toFixed(0)}%</div></div>
+    <div class="kpi-card"><div class="label">Total Trades</div>
+      <div class="value">${results.trades?.length || 0}</div></div>
+  `;
+}
+
+// UPDATED: All colors now correctly use the getCssVar() helper function
+function renderCharts(results) {
+    if (!results || !results.equityCurve || results.equityCurve.length === 0) {
+        ['equityCurveChart', 'priceChart', 'drawdownChart'].forEach(id => {
+            if (chartInstances[id]) chartInstances[id].destroy();
+        });
+        return;
+    }
+
+    const equityCurve = results.equityCurve;
+    const trades = results.trades;
+    const equityLabels = equityCurve.map(row => row.date);
+
+    renderChart('equityCurveChart', 'line', {
+        labels: equityLabels,
+        datasets: [{
+            label: 'Strategy Equity',
+            data: equityCurve.map(row => row.totalEquity),
+            borderColor: getCssVar('--primary-color'), // CORRECT
+            tension: 0.1, pointRadius: 0
+        }, {
+            label: 'Benchmark (Buy & Hold)',
+            data: results.benchmarkCurve,
+            borderColor: getCssVar('--text-muted-color'), // CORRECT
+            borderDash: [5, 5], tension: 0.1, pointRadius: 0
+        }]
+    });
+
+    renderChart('priceChart', 'line', {
+        labels: equityLabels,
+        datasets: [{
+            label: 'Price',
+            data: equityCurve.map(row => row.price),
+            borderColor: getCssVar('--text-color'), // CORRECT
+            tension: 0.1, pointRadius: 0
+        }, {
+            label: 'Buy',
+            data: trades.filter(t => t.type === "Long").map(trade => ({ x: trade.entryDate, y: trade.entryPrice })),
+            pointStyle: 'triangle', radius: 8, rotation: 0, showLine: false,
+            backgroundColor: getCssVar('--green'), // CORRECT
+            borderColor: getCssVar('--green') // CORRECT
+        }, {
+            label: 'Sell',
+            data: trades.filter(t => t.type === "Long").map(trade => ({ x: trade.exitDate, y: trade.exitPrice })),
+            pointStyle: 'triangle', radius: 8, rotation: 180, showLine: false,
+            backgroundColor: getCssVar('--red'), // CORRECT
+            borderColor: getCssVar('--red') // CORRECT
+        }]
+    });
+
+    renderChart('drawdownChart', 'bar', {
+        labels: equityLabels,
+        datasets: [{
+            label: 'Drawdown (%)',
+            data: results.metrics.drawdownSeries,
+            backgroundColor: getCssVar('--red') // CORRECT
+        }]
+    }, { legend: { display: false }, y: { ticks: { callback: v => v.toFixed(1) + '%' } } });
+}
+
+function renderChart(canvasId, type, data, additionalOptions = {}) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  
+  const container = canvas.parentElement;
+  if (container) {
+    container.style.position = 'relative';
+    container.style.height = '40vh';
+    container.style.width = '100%';
+  }
+
+  const ctx = canvas.getContext('2d');
+  if (chartInstances[canvasId]) {
+    chartInstances[canvasId].destroy();
+  }
+  
+  chartInstances[canvasId] = new Chart(ctx, {
+    type: type,
+    data: data,
     options: {
+      maintainAspectRatio: false,
       responsive: true,
       scales: {
-        x: { display: true, title: { display: true, text: 'Date' } },
-        y: { display: true, title: { display: true, text: 'Value' } }
+        x: { 
+          type: 'time', 
+          time: { unit: 'month' }, 
+          grid: { color: getCssVar('--border-color') }, // Also updated grid lines
+          ticks: { 
+            color: getCssVar('--text-muted-color'), // and tick labels
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 12 
+          } 
+        },
+        y: { 
+          grid: { color: getCssVar('--border-color') }, // and grid lines
+          ticks: { color: getCssVar('--text-muted-color') }, // and tick labels
+          ...additionalOptions.y 
+        }
+      },
+      plugins: { 
+        legend: { 
+          labels: { color: getCssVar('--text-color') }, // and legend labels
+          ...additionalOptions.legend 
+        } 
       }
     }
   });
 }
 
-function showMetrics(results) {
-  const { profit, totalTrades, winRate } = results.metrics;
-  const metricsDiv = document.getElementById('metrics');
-  metricsDiv.innerHTML = `
-    <h2>Results</h2>
-    <p><strong>Profit:</strong> $${profit}</p>
-    <p><strong>Total Trades:</strong> ${totalTrades}</p>
-    <p><strong>Win Rate:</strong> ${winRate}</p>
-    <h3>Trades Log</h3>
-    <ul>
-      ${results.trades.map(trade =>
-        `<li>${trade.date}: ${trade.type} @ $${trade.price}</li>`
-      ).join('')}
-    </ul>
-  `;
+function renderTradeLog(trades) {
+  const body = document.getElementById("trade-log-body");
+  if (!body || !trades) return;
+  body.innerHTML = trades.map(trade => `
+    <tr>
+      <td>${trade.entryDate}</td>
+      <td>${trade.exitDate}</td>
+      <td>${trade.type}</td>
+      <td>${trade.entryPrice.toFixed(2)}</td>
+      <td>${trade.exitPrice.toFixed(2)}</td>
+      <td class="${trade.pnlPct >= 0 ? 'pnl-positive' : 'pnl-negative'}">${trade.pnlPct.toFixed(2)}%</td>
+    </tr>
+  `).join("");
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("strategy-select")) {
+    renderStrategyOptions();
+    document.getElementById("strategy-select").onchange = renderStrategyParams;
+    document.getElementById("runBacktest").onclick = runBacktest;
+  }
+});

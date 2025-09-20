@@ -1,38 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <title>Welcome!</title>
-  <script src="https://kit.fontawesome.com/4636762066.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco Scarlata - Software Engineer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body>
-  <!-- Navbar -->
-  <div class="tabs is-medium">
-    <ul>
-      <li class="is-active" id="home"><a>Home</a></li>
-      <li id="blog"><a href="pages/blog.html">Blog</a></li>
-      <li id="resume"><a href="pages/resume.html">Resume</a></li>
-      <li id="github"><a href="https://www.github.com/mscarla2">Github</a></li>
-      <li id="linkedin"><a href="https://www.linkedin.com/in/marco-scarlata">LinkedIn</a></li>
-      <li id="backtest"><a href="/pages/backtest.html">Algotrading Backtest</a></li>
-    </ul>
-  </div>
+    <div id="background-animation"></div>
+    
+    <!-- The nav.js script will inject the navbar here -->
+    <div id="navbar"></div>
 
-  <!-- Main Content -->
-  <div class="container">
-    <h1 class="title">Marco Scarlata</h1>
-    <p class="subtitle">Welcome to my site! Feel free to browse around and learn more about me.</p>
-    <img src="../images/Profile.jpeg" alt="Profile Picture" class="profile-pic" />
-    <p class="subtitle">
-      Currently as of the time of writing this, I am a SWE at Google working on building embedded, low-latency
-        Machine Learning algorithms for the Pixel Watch series.
-    </p>
-  </div>
-  <script src="javascript/geometry.js"></script>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <figure class="image is-128x128 is-inline-block">
+                    <!-- Corrected path to your image -->
+                    <img class="is-rounded" src="images/Profile.jpeg" alt="Marco Scarlata">
+                </figure>
+                <h1 class="title is-1 has-text-weight-bold mt-5">
+                    Marco Scarlata
+                </h1>
+                <h2 class="subtitle is-3 has-text-weight-light">
+                    Software Engineer at Google
+                </h2>
+                <p class="is-size-5" style="max-width: 600px; margin: 1.5rem auto;">
+                    Building embedded, low-latency Machine Learning algorithms for the Pixel Watch series. Passionate about embedded development, AI/ML and quantitative finance.
+                </p>
+                <div class="buttons is-centered">
+                    <a href="https://github.com/your-github-username" target="_blank" class="button is-medium is-light">
+                        <span class="icon"><i class="fab fa-github"></i></span>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="button is-medium is-link">
+                        <span class="icon"><i class="fab fa-linkedin"></i></span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <!-- Corrected path to your resume page -->
+                    <a href="pages/resume.html" class="button is-medium is-primary">
+                        <span class="icon"><i class="fas fa-file-alt"></i></span>
+                        <span>View Resume</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Font Awesome for icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <!-- Correct paths for JS files loaded from the root -->
+    <script src="javascript/nav.js"></script>
+    <script src="javascript/home.js"></script>
 </body>
 </html>

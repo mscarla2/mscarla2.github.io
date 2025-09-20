@@ -1,51 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <title>Algotrading Backtest</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <script src="https://kit.fontawesome.com/4636762066.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algotrading Backtest - Marco Scarlata</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/backtest.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
 </head>
-
 <body>
-  <div id="navbar"></div>
-  <section class="section">
-    <div class="container">
-      <h1 class="title has-text-centered">Algotrading Backtesting</h1>
-      <p class="subtitle has-text-centered">
-        Upload your own CSV file or use the sample data to test a Moving Average Crossover strategy.
-      </p>
-      <div class="buttons is-centered">
-        <button class="button is-link" id="downloadSample">
-          <span class="icon"><i class="fas fa-download"></i></span>
-          <span>Download Sample CSV</span>
-        </button>
-        <div class="file is-info">
-          <label class="file-label">
-            <input class="file-input" type="file" id="csvFile" accept=".csv" />
-            <span class="file-cta">
-              <span class="file-icon"><i class="fas fa-upload"></i></span>
-              <span class="file-label">Choose CSV File</span>
-            </span>
-          </label>
-        </div>
-        <button class="button is-primary" onclick="runBacktest()">
-          <span class="icon"><i class="fas fa-play"></i></span>
-          <span>Run Backtest</span>
-        </button>
-      </div>
-      <br>
-      <div class="box">
-        <canvas id="resultsChart" width="800" height="400"></canvas>
-        <div id="metrics"></div>
-      </div>
+    <div id="navbar"></div>
+    <div class="container backtest-container">
+        <aside class="control-panel">
+            <h1>Backtest Configuration</h1>
+            
+            <!-- MOVED: Run button is now at the top for easy access -->
+            <button id="runBacktest" class="run-button">Run Backtest</button>
+
+            <h2>Strategy</h2>
+            <div class="form-group">
+                <label for="strategy-select">Strategy</label>
+                <select id="strategy-select"></select>
+            </div>
+            <div id="strategy-params"></div>
+            <button id="custom-strategy-btn" class="button is-small is-info is-outlined mt-2">+ Custom Strategy</button>
+
+            <h2>Data & Timeframe</h2>
+            <div class="form-group">
+                <label for="asset">Asset Ticker (e.g., AAPL.US)</label>
+                <input type="text" id="asset" value="SPY">
+            </div>
+            <div class="form-group">
+                <label for="start-date">Start Date</label>
+                <input type="date" id="start-date" value="2015-01-01">
+            </div>
+            <div class="form-group">
+                <label for="end-date">End Date</label>
+                <input type="date" id="end-date" value="2023-12-31">
+            </div>
+            
+            <h2>Simulation Settings</h2>
+             <div class="form-group">
+                <label for="initial-capital">Initial Capital</label>
+                <input type="number" id="initial-capital" value="100000">
+            </div>
+             <div class="form-group">
+                <label for="commission">Commission ($ per trade)</label>
+                <input type="number" id="commission" value="1.00">
+            </div>
+            <div class="form-group">
+                <label for="api-key">EODHD API Key</label>
+                <input type="password" id="api-key" value="demo" placeholder="Get free key from eodhistoricaldata.com">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h1 id="results-title">Backtest Results</h1>
+            <div id="results-dashboard" class="results-dashboard">
+                <section id="kpi-scorecard" class="kpi-scorecard"></section>
+                <section class="chart-container"><h3>Equity Curve vs. Benchmark (Buy & Hold)</h3><canvas id="equityCurveChart"></canvas></section>
+                <section class="chart-container"><h3>Price Chart with Trades</h3><canvas id="priceChart"></canvas></section>
+                <section class="chart-container"><h3>Drawdown Periods</h3><canvas id="drawdownChart"></canvas></section>
+                <section class="trade-log-container">
+                    <h3>Trade Log</h3>
+                    <table class="trade-log-table">
+                        <thead><tr><th>Entry Date</th><th>Exit Date</th><th>Direction</th><th>Entry Price</th><th>Exit Price</th><th>P&L (%)</th></tr></thead>
+                        <tbody id="trade-log-body"></tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
     </div>
-  </section>
-  <script src="../javascript/backtest.js"></script>
-  <script src="../javascript/nav.js"></script>
+
+    <!-- Custom Strategy Modal -->
+    <div id="strategy-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h2 class="title is-4">Create Custom Strategy</h2>
+            <div class="form-group"><label for="strategy-name">Strategy Name</label><input type="text" id="strategy-name" placeholder="e.g., My Custom Breakout"></div>
+            <div class="form-group"><label for="strategy-desc">Description</label><input type="text" id="strategy-desc" placeholder="A short description"></div>
+            <div class="form-group"><label>Entry/Exit Rules (JavaScript)</label><textarea id="strategy-rules" class="textarea" rows="12" placeholder="/*\n  Available context: data, i, params\n*/\nreturn {\n  entryLong: data[i].close > data[i].someIndicator,\n  exitLong: data[i].close < data[i].anotherIndicator,\n  entryShort: false,\n  exitShort: false\n};"></textarea></div>
+            <button id="save-strategy-btn" class="button is-primary">Save Strategy</button>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    </div>
+    
+    <script src="/javascript/nav.js"></script>
+    <script src="/javascript/strategies.js"></script>
+    <script src="/javascript/strategy_editor.js"></script>
+    <script src="/javascript/backtest_engine.js"></script>
+    <script src="/javascript/backtest.js"></script>
 </body>
 </html>
