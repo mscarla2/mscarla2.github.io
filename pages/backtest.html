@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Algotrading Backtest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/4636762066.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div id="navbar"></div>
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">Algotrading Backtesting</h1>
+      <p class="subtitle has-text-centered">
+        Upload your own CSV file or use the sample data to test a Moving Average Crossover strategy.
+      </p>
+      <div class="buttons is-centered">
+        <button class="button is-link" id="downloadSample">
+          <span class="icon"><i class="fas fa-download"></i></span>
+          <span>Download Sample CSV</span>
+        </button>
+        <div class="file is-info">
+          <label class="file-label">
+            <input class="file-input" type="file" id="csvFile" accept=".csv" />
+            <span class="file-cta">
+              <span class="file-icon"><i class="fas fa-upload"></i></span>
+              <span class="file-label">Choose CSV File</span>
+            </span>
+          </label>
+        </div>
+        <button class="button is-primary" onclick="runBacktest()">
+          <span class="icon"><i class="fas fa-play"></i></span>
+          <span>Run Backtest</span>
+        </button>
+      </div>
+      <br>
+      <div class="box">
+        <canvas id="resultsChart" width="800" height="400"></canvas>
+        <div id="metrics"></div>
+      </div>
+    </div>
+  </section>
+  <script src="../javascript/backtest.js"></script>
+  <script src="../javascript/nav.js"></script>
+</body>
+</html>
