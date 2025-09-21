@@ -1,8 +1,7 @@
 const chartInstances = {};
 
-// NEW: Helper function to get the computed value of a CSS variable
+// Helper function to get the computed value of a CSS variable
 function getCssVar(varName) {
-    // .trim() is important to remove any leading/trailing whitespace
     return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 }
 
@@ -75,12 +74,14 @@ async function runBacktest() {
   renderTradeLog(results.trades);
 }
 
+// UPDATED: Now includes Net Profit calculation and display
 function renderKPI(results) {
   const area = document.getElementById("kpi-scorecard");
 
   if (!results || !results.equityCurve || results.equityCurve.length === 0) {
       area.innerHTML = `
         <div class="kpi-card"><div class="label">Total Return</div><div class="value">N/A</div></div>
+        <div class="kpi-card"><div class="label">Net Profit</div><div class="value">N/A</div></div>
         <div class="kpi-card"><div class="label">Max Drawdown</div><div class="value">N/A</div></div>
         <div class="kpi-card"><div class="label">Sharpe Ratio</div><div class="value">N/A</div></div>
         <div class="kpi-card"><div class="label">Profit Factor</div><div class="value">N/A</div></div>
@@ -92,28 +93,52 @@ function renderKPI(results) {
 
   const initialCapital = results.equityCurve[0].totalEquity;
   const finalEquity = results.equityCurve[results.equityCurve.length - 1].totalEquity;
-  const totalReturn = ((finalEquity - initialCapital) / initialCapital) * 100;
   
+  // --- METRIC CALCULATIONS ---
+  const totalReturn = ((finalEquity - initialCapital) / initialCapital) * 100;
+  const netProfit = finalEquity - initialCapital; // NEW METRIC
   const profitFactor = results.metrics.profitFactor;
+
+  // --- FORMATTING FOR DISPLAY ---
   const profitFactorDisplay = profitFactor === Infinity ? 'Perfect' : profitFactor.toFixed(2);
+  const formattedNetProfit = netProfit.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); // Format as currency
+  const profitClass = netProfit >= 0 ? "positive" : "negative";
 
   area.innerHTML = `
-    <div class="kpi-card"><div class="label">Total Return</div>
-      <div class="value ${totalReturn >= 0 ? "positive" : "negative"}">${totalReturn.toFixed(2)}%</div></div>
-    <div class="kpi-card"><div class="label">Max Drawdown</div>
-      <div class="value negative">${results.metrics.maxDrawdown.toFixed(2)}%</div></div>
-    <div class="kpi-card"><div class="label">Sharpe Ratio</div>
-      <div class="value">${results.metrics.sharpeRatio.toFixed(2)}</div></div>
-    <div class="kpi-card"><div class="label">Profit Factor</div>
-      <div class="value">${profitFactorDisplay}</div></div>
-    <div class="kpi-card"><div class="label">Win Rate</div>
-      <div class="value">${results.metrics.winRate.toFixed(0)}%</div></div>
-    <div class="kpi-card"><div class="label">Total Trades</div>
-      <div class="value">${results.trades?.length || 0}</div></div>
+    <div class="kpi-card">
+        <div class="label">Total Return</div>
+        <div class="value ${totalReturn >= 0 ? "positive" : "negative"}">${totalReturn.toFixed(2)}%</div>
+    </div>
+    
+    <!-- NEW KPI CARD FOR NET PROFIT -->
+    <div class="kpi-card">
+        <div class="label">Net Profit</div>
+        <div class="value ${profitClass}">${formattedNetProfit}</div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="label">Max Drawdown</div>
+        <div class="value negative">${results.metrics.maxDrawdown.toFixed(2)}%</div>
+    </div>
+    <div class="kpi-card">
+        <div class="label">Sharpe Ratio</div>
+        <div class="value">${results.metrics.sharpeRatio.toFixed(2)}</div>
+    </div>
+    <div class="kpi-card">
+        <div class="label">Profit Factor</div>
+        <div class="value">${profitFactorDisplay}</div>
+    </div>
+    <div class="kpi-card">
+        <div class="label">Win Rate</div>
+        <div class="value">${results.metrics.winRate.toFixed(0)}%</div>
+    </div>
+    <div class="kpi-card">
+        <div class="label">Total Trades</div>
+        <div class="value">${results.trades?.length || 0}</div>
+    </div>
   `;
 }
 
-// UPDATED: All colors now correctly use the getCssVar() helper function
 function renderCharts(results) {
     if (!results || !results.equityCurve || results.equityCurve.length === 0) {
         ['equityCurveChart', 'priceChart', 'drawdownChart'].forEach(id => {
@@ -131,12 +156,12 @@ function renderCharts(results) {
         datasets: [{
             label: 'Strategy Equity',
             data: equityCurve.map(row => row.totalEquity),
-            borderColor: getCssVar('--primary-color'), // CORRECT
+            borderColor: getCssVar('--primary-color'),
             tension: 0.1, pointRadius: 0
         }, {
             label: 'Benchmark (Buy & Hold)',
             data: results.benchmarkCurve,
-            borderColor: getCssVar('--text-muted-color'), // CORRECT
+            borderColor: getCssVar('--text-muted-color'),
             borderDash: [5, 5], tension: 0.1, pointRadius: 0
         }]
     });
@@ -146,20 +171,20 @@ function renderCharts(results) {
         datasets: [{
             label: 'Price',
             data: equityCurve.map(row => row.price),
-            borderColor: getCssVar('--text-color'), // CORRECT
+            borderColor: getCssVar('--text-color'),
             tension: 0.1, pointRadius: 0
         }, {
             label: 'Buy',
             data: trades.filter(t => t.type === "Long").map(trade => ({ x: trade.entryDate, y: trade.entryPrice })),
             pointStyle: 'triangle', radius: 8, rotation: 0, showLine: false,
-            backgroundColor: getCssVar('--green'), // CORRECT
-            borderColor: getCssVar('--green') // CORRECT
+            backgroundColor: getCssVar('--green'),
+            borderColor: getCssVar('--green')
         }, {
             label: 'Sell',
             data: trades.filter(t => t.type === "Long").map(trade => ({ x: trade.exitDate, y: trade.exitPrice })),
             pointStyle: 'triangle', radius: 8, rotation: 180, showLine: false,
-            backgroundColor: getCssVar('--red'), // CORRECT
-            borderColor: getCssVar('--red') // CORRECT
+            backgroundColor: getCssVar('--red'),
+            borderColor: getCssVar('--red')
         }]
     });
 
@@ -168,7 +193,7 @@ function renderCharts(results) {
         datasets: [{
             label: 'Drawdown (%)',
             data: results.metrics.drawdownSeries,
-            backgroundColor: getCssVar('--red') // CORRECT
+            backgroundColor: getCssVar('--red')
         }]
     }, { legend: { display: false }, y: { ticks: { callback: v => v.toFixed(1) + '%' } } });
 }
@@ -199,23 +224,23 @@ function renderChart(canvasId, type, data, additionalOptions = {}) {
         x: { 
           type: 'time', 
           time: { unit: 'month' }, 
-          grid: { color: getCssVar('--border-color') }, // Also updated grid lines
+          grid: { color: getCssVar('--border-color') },
           ticks: { 
-            color: getCssVar('--text-muted-color'), // and tick labels
+            color: getCssVar('--text-muted-color'),
             maxRotation: 0,
             autoSkip: true,
             maxTicksLimit: 12 
           } 
         },
         y: { 
-          grid: { color: getCssVar('--border-color') }, // and grid lines
-          ticks: { color: getCssVar('--text-muted-color') }, // and tick labels
+          grid: { color: getCssVar('--border-color') },
+          ticks: { color: getCssVar('--text-muted-color') },
           ...additionalOptions.y 
         }
       },
       plugins: { 
         legend: { 
-          labels: { color: getCssVar('--text-color') }, // and legend labels
+          labels: { color: getCssVar('--text-color') },
           ...additionalOptions.legend 
         } 
       }
