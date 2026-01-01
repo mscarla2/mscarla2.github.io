@@ -31,9 +31,9 @@
         <!-- Header -->
         <div class="resume-card" style="border-left: 5px solid #2563eb">
           <div class="columns is-vcentered">
-            <div class="column">
+            <div class="column has-text-left">
               <h1 class="title is-3 mb-2">Marco Scarlata</h1>
-              <p class="subtitle is-6 has-text-link mb-0">
+              <p class="title is-6 has-text-link mb-0">
                 Software Engineer @ Google | AI/ML & Algorithms
               </p>
             </div>
@@ -139,7 +139,7 @@
                 <i class="fas fa-graduation-cap"></i>
                 <h2>Education</h2>
               </div>
-              
+
               <div class="edu-header">
                 <div class="edu-uni">University of Rochester</div>
                 <div class="edu-date">2018 – 2022</div>
@@ -149,22 +149,34 @@
               <!-- Stats & Awards -->
               <div class="edu-meta-grid">
                 <div class="edu-meta-item">
-                  <span class="edu-meta-icon"><i class="fas fa-chart-line"></i></span>
-                  <span class="edu-meta-text"><strong>GPA:</strong> 3.5/4.0</span>
+                  <span class="edu-meta-icon"
+                    ><i class="fas fa-chart-line"></i
+                  ></span>
+                  <span class="edu-meta-text"
+                    ><strong>GPA:</strong> 3.5/4.0</span
+                  >
                 </div>
                 <div class="edu-meta-item">
-                  <span class="edu-meta-icon"><i class="fas fa-medal"></i></span>
-                  <span class="edu-meta-text">Dean's Scholarship Recipient</span>
+                  <span class="edu-meta-icon"
+                    ><i class="fas fa-medal"></i
+                  ></span>
+                  <span class="edu-meta-text"
+                    >Dean's Scholarship Recipient</span
+                  >
                 </div>
                 <div class="edu-meta-item">
-                  <span class="edu-meta-icon"><i class="fas fa-award"></i></span>
+                  <span class="edu-meta-icon"
+                    ><i class="fas fa-award"></i
+                  ></span>
                   <span class="edu-meta-text">Rochester National Grant</span>
                 </div>
               </div>
 
               <!-- Coursework Tags -->
               <div>
-                <h4 class="is-size-7 has-text-weight-bold has-text-grey is-uppercase mb-2">
+                <h4
+                  class="is-size-7 has-text-weight-bold has-text-grey is-uppercase mb-2"
+                >
                   Coursework
                 </h4>
                 <div class="course-list">
@@ -225,9 +237,7 @@
                       >Pixel Watch Launch</span
                     >
                   </div>
-                  <h3 class="title is-4 mb-2">
-                    Pixel Watch 4 Gestures
-                  </h3>
+                  <h3 class="title is-4 mb-2">Pixel Watch 4 Gestures</h3>
                   <p class="mb-3">
                     I architected and launched the
                     <strong>One-Handed Gestures</strong> (Double Pinch & Wrist
@@ -270,7 +280,8 @@
                       AI Glasses Announcement
                     </h3>
                     <p class="is-size-7 has-text-grey-dark">
-                      xDevice integration with Pixel Watch where I'll be working closely with for the next year!
+                      xDevice integration with Pixel Watch where I'll be working
+                      closely with for the next year!
                     </p>
                   </div>
                 </a>
@@ -298,20 +309,107 @@
                 <div class="team-card">
                   <div class="team-title">WatchSW AI/ML & Algorithms</div>
                   <ul class="team-details">
-                    <li>Launched <span class="highlight-project">One-Handed Gestures (Double Pinch & Wrist Turn)</span>, a novel, low-power ML gesture recognition algorithm (<span class="highlight-tech">C++</span>, <span class="highlight-tech">Python</span>, <span class="highlight-tech">TFLite</span>) for the Pixel Watch, partnering with a Research Scientist to lead end-to-end integration, on-device optimization, and sensor fusion (IMU & physiological signals); achieved over <span class="highlight-metric">92% accuracy</span>, <span class="highlight-metric">1ms inference</span>, and <span class="highlight-metric">&lt;250ms E2E latency</span>.</li>
-                    <li>Architected the <span class="highlight-project">Gesture Hardware Abstraction Layer (HAL)</span> to ingest and transform sensor events for the platform service, decoupling the algorithm to enable vendor-agnostic implementations (<span class="highlight-tech">C++</span>); introduced bidirectional communication for context-aware sensing (e.g., display state), facilitating cross-device orchestration with xDevices such as XR glasses and reducing latency by <span class="highlight-metric">30%</span> through the consolidation of abstraction layers.</li>
-                    <li>Owned and optimized the <span class="highlight-project">Low Latency Off-body Detection (LLOB)</span> algorithm – a core component for most algorithms and system performance – resolving false detections and power regressions, raising reliability across all shipped devices (<span class="highlight-tech">C++</span>, <span class="highlight-tech">Matlab</span>)</li>
-                    <li>Implemented on-device telemetry and ETL dashboards (<span class="highlight-tech">Python</span>, <span class="highlight-tech">SQL</span>); led Gestures and LLOB bug triage, closing <span class="highlight-metric">1000+ bugs</span>.</li>
-                    <li>Mentored teammates on sensor integration and MCU-level development; led design reviews and authored the "MCU-based Practical Telemetry Guide" referenced by <span class="highlight-metric">24+ engineers</span>.</li>
+                    <li>
+                      Launched
+                      <span class="highlight-project"
+                        >One-Handed Gestures (Double Pinch & Wrist Turn)</span
+                      >, a novel, low-power ML gesture recognition algorithm
+                      (<span class="highlight-tech">C++</span>,
+                      <span class="highlight-tech">Python</span>,
+                      <span class="highlight-tech">TFLite</span>) for the Pixel
+                      Watch, partnering with a Research Scientist to lead
+                      end-to-end integration, on-device optimization, and sensor
+                      fusion (IMU & physiological signals); achieved over
+                      <span class="highlight-metric">92% accuracy</span>,
+                      <span class="highlight-metric">1ms inference</span>, and
+                      <span class="highlight-metric">&lt;250ms E2E latency</span
+                      >.
+                    </li>
+                    <li>
+                      Architected the
+                      <span class="highlight-project"
+                        >Gesture Hardware Abstraction Layer (HAL)</span
+                      >
+                      to ingest and transform sensor events for the platform
+                      service, decoupling the algorithm to enable
+                      vendor-agnostic implementations (<span
+                        class="highlight-tech"
+                        >C++</span
+                      >); introduced bidirectional communication for
+                      context-aware sensing (e.g., display state), facilitating
+                      cross-device orchestration with xDevices such as XR
+                      glasses and reducing latency by
+                      <span class="highlight-metric">30%</span> through the
+                      consolidation of abstraction layers.
+                    </li>
+                    <li>
+                      Owned and optimized the
+                      <span class="highlight-project"
+                        >Low Latency Off-body Detection (LLOB)</span
+                      >
+                      algorithm – a core component for most algorithms and
+                      system performance – resolving false detections and power
+                      regressions, raising reliability across all shipped
+                      devices (<span class="highlight-tech">C++</span>,
+                      <span class="highlight-tech">Matlab</span>)
+                    </li>
+                    <li>
+                      Implemented on-device telemetry and ETL dashboards (<span
+                        class="highlight-tech"
+                        >Python</span
+                      >, <span class="highlight-tech">SQL</span>); led Gestures
+                      and LLOB bug triage, closing
+                      <span class="highlight-metric">1000+ bugs</span>.
+                    </li>
+                    <li>
+                      Mentored teammates on sensor integration and MCU-level
+                      development; led design reviews and authored the
+                      "MCU-based Practical Telemetry Guide" referenced by
+                      <span class="highlight-metric">24+ engineers</span>.
+                    </li>
                   </ul>
                 </div>
 
                 <div class="team-card">
                   <div class="team-title">Cloud Asset Inventory & Search</div>
                   <ul class="team-details">
-                    <li>Productionized a scalable <span class="highlight-tech">C++</span> solution to enrich <span class="highlight-project">Cloud Asset Inventory</span> with structured metadata for cloud-managed assets, impacting <span class="highlight-metric">90%+ of GCP resources</span> and boosting adoption to <span class="highlight-metric">500,000+ active users</span>.</li>
-                    <li>Enabled launch of <span class="highlight-project">Asset Enrichment</span> in the <span class="highlight-project">Asset Query System</span> (<span class="highlight-tech">C++</span>, <span class="highlight-tech">SQL</span>, <span class="highlight-tech">Spanner</span>), powering efficient queries across <span class="highlight-metric">275+ GCP asset types</span> for SCC customers.</li>
-                    <li>Drove cross-team optimization of a workflow runner (<span class="highlight-tech">gRPC</span>, <span class="highlight-tech">Borg</span>, <span class="highlight-tech">Python</span>), reducing development time by <span class="highlight-metric">25%</span> resulting in <span class="highlight-metric">10 SWE weeks saved</span>.</li>
+                    <li>
+                      Productionized a scalable
+                      <span class="highlight-tech">C++</span> solution to enrich
+                      <span class="highlight-project"
+                        >Cloud Asset Inventory</span
+                      >
+                      with structured metadata for cloud-managed assets,
+                      impacting
+                      <span class="highlight-metric"
+                        >90%+ of GCP resources</span
+                      >
+                      and boosting adoption to
+                      <span class="highlight-metric">500,000+ active users</span
+                      >.
+                    </li>
+                    <li>
+                      Enabled launch of
+                      <span class="highlight-project">Asset Enrichment</span> in
+                      the
+                      <span class="highlight-project">Asset Query System</span>
+                      (<span class="highlight-tech">C++</span>,
+                      <span class="highlight-tech">SQL</span>,
+                      <span class="highlight-tech">Spanner</span>), powering
+                      efficient queries across
+                      <span class="highlight-metric">275+ GCP asset types</span>
+                      for SCC customers.
+                    </li>
+                    <li>
+                      Drove cross-team optimization of a workflow runner (<span
+                        class="highlight-tech"
+                        >gRPC</span
+                      >, <span class="highlight-tech">Borg</span>,
+                      <span class="highlight-tech">Python</span>), reducing
+                      development time by
+                      <span class="highlight-metric">25%</span> resulting in
+                      <span class="highlight-metric">10 SWE weeks saved</span>.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -329,8 +427,25 @@
                 <div class="team-card">
                   <div class="team-title">Front-End Division</div>
                   <ul class="team-details">
-                    <li>Enhanced course language selection with searchable dropdowns (<span class="highlight-tech">Angular</span>, <span class="highlight-tech">TypeScript</span>); built and ported <span class="highlight-metric">10+ end-to-end tests</span> from <span class="highlight-tech">Drupal</span> to <span class="highlight-tech">Angular/Selenium</span>, expanding QA coverage.</li>
-                    <li>Resolved <span class="highlight-metric">6+ sprint bugs</span>—including a critical IE landing page issue—by extrapolating burn-down processes and strengthening test automation with <span class="highlight-tech">Behat API</span>, and unit tests.</li>
+                    <li>
+                      Enhanced course language selection with searchable
+                      dropdowns (<span class="highlight-tech">Angular</span>,
+                      <span class="highlight-tech">TypeScript</span>); built and
+                      ported
+                      <span class="highlight-metric">10+ end-to-end tests</span>
+                      from <span class="highlight-tech">Drupal</span> to
+                      <span class="highlight-tech">Angular/Selenium</span>,
+                      expanding QA coverage.
+                    </li>
+                    <li>
+                      Resolved
+                      <span class="highlight-metric">6+ sprint bugs</span
+                      >—including a critical IE landing page issue—by
+                      extrapolating burn-down processes and strengthening test
+                      automation with
+                      <span class="highlight-tech">Behat API</span>, and unit
+                      tests.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -348,8 +463,30 @@
                 <div class="team-card">
                   <div class="team-title">Machine Learning Team</div>
                   <ul class="team-details">
-                    <li>Analyzed the purchase history of <span class="highlight-metric">100,000+ users</span> buying coupons by regression analysis using <span class="highlight-tech">Python</span>, <span class="highlight-tech">Pandas</span>, <span class="highlight-tech">NumPy</span>, and <span class="highlight-tech">PyTorch</span>, identifying an under-marketed sector in sales that increased revenue by <span class="highlight-metric">10%</span>.</li>
-                    <li>Launched an <span class="highlight-project">MVP module-based recommender system</span> with caching for an e-commerce platform (BananaMall) with <span class="highlight-metric">10,000+ downloads</span> on the Playstore and <span class="highlight-metric">100,000+ users</span>, using <span class="highlight-tech">Python</span>, <span class="highlight-tech">SKLearn</span>, and <span class="highlight-tech">DynamoDB</span>.</li>
+                    <li>
+                      Analyzed the purchase history of
+                      <span class="highlight-metric">100,000+ users</span>
+                      buying coupons by regression analysis using
+                      <span class="highlight-tech">Python</span>,
+                      <span class="highlight-tech">Pandas</span>,
+                      <span class="highlight-tech">NumPy</span>, and
+                      <span class="highlight-tech">PyTorch</span>, identifying
+                      an under-marketed sector in sales that increased revenue
+                      by <span class="highlight-metric">10%</span>.
+                    </li>
+                    <li>
+                      Launched an
+                      <span class="highlight-project"
+                        >MVP module-based recommender system</span
+                      >
+                      with caching for an e-commerce platform (BananaMall) with
+                      <span class="highlight-metric">10,000+ downloads</span> on
+                      the Playstore and
+                      <span class="highlight-metric">100,000+ users</span>,
+                      using <span class="highlight-tech">Python</span>,
+                      <span class="highlight-tech">SKLearn</span>, and
+                      <span class="highlight-tech">DynamoDB</span>.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -367,8 +504,24 @@
                 <div class="team-card">
                   <div class="team-title">Computer Science Department</div>
                   <ul class="team-details">
-                    <li>Taught students in <span class="highlight-tech">Web Programming</span>, <span class="highlight-tech">Data Structures & Algorithms</span>, and <span class="highlight-tech">Formal System & Computations</span> courses.</li>
-                    <li>Conducted tutoring sessions with <span class="highlight-metric">15+ college students</span>, resulting in a <span class="highlight-metric">30% increase</span> in their respective course grades.</li>
+                    <li>
+                      Taught students in
+                      <span class="highlight-tech">Web Programming</span>,
+                      <span class="highlight-tech"
+                        >Data Structures & Algorithms</span
+                      >, and
+                      <span class="highlight-tech"
+                        >Formal System & Computations</span
+                      >
+                      courses.
+                    </li>
+                    <li>
+                      Conducted tutoring sessions with
+                      <span class="highlight-metric">15+ college students</span
+                      >, resulting in a
+                      <span class="highlight-metric">30% increase</span> in
+                      their respective course grades.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -385,38 +538,38 @@
 
     <!-- Language Filtering Script -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const languageContainer = document.getElementById('language-skills');
-        if(!languageContainer) return;
+      document.addEventListener("DOMContentLoaded", () => {
+        const languageContainer = document.getElementById("language-skills");
+        if (!languageContainer) return;
 
         // Get all language tags and all experience bullet points
-        const languageTags = languageContainer.querySelectorAll('.skill-tag');
-        const allBullets = document.querySelectorAll('.team-details li');
+        const languageTags = languageContainer.querySelectorAll(".skill-tag");
+        const allBullets = document.querySelectorAll(".team-details li");
 
-        languageTags.forEach(tag => {
-          tag.addEventListener('click', () => {
+        languageTags.forEach((tag) => {
+          tag.addEventListener("click", () => {
             // Check if the clicked tag is already active
-            const isActive = tag.classList.contains('active');
+            const isActive = tag.classList.contains("active");
 
             // 1. Reset everything first
             // Remove active class from all language tags
-            languageTags.forEach(t => t.classList.remove('active'));
+            languageTags.forEach((t) => t.classList.remove("active"));
             // Show all bullet points
-            allBullets.forEach(li => li.style.display = '');
+            allBullets.forEach((li) => (li.style.display = ""));
 
             // 2. If it wasn't active before, apply the filter
             if (!isActive) {
               // Highlight the clicked tag
-              tag.classList.add('active');
-              
+              tag.classList.add("active");
+
               const skillName = tag.textContent.trim().toLowerCase();
 
               // Loop through bullets and hide those that don't match
-              allBullets.forEach(li => {
+              allBullets.forEach((li) => {
                 const bulletText = li.textContent.toLowerCase();
                 // If the bullet text does NOT include the skill name, hide it
                 if (!bulletText.includes(skillName)) {
-                  li.style.display = 'none';
+                  li.style.display = "none";
                 }
               });
             }
