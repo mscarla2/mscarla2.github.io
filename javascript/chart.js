@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
               datasets: [{
                   label: 'Proficiency',
                   data: [9, 6, 6, 6, 9, 7, 3],
-                  backgroundColor: 'rgba(37, 99, 235, 0.2)', // Matches the blue theme
-                  borderColor: 'rgba(37, 99, 235, 1)',
+                  backgroundColor: 'rgba(232, 163, 61, 0.2)', // amber theme
+                  borderColor: 'rgba(232, 163, 61, 1)',
                   borderWidth: 2,
-                  pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                  pointBackgroundColor: 'rgba(232, 163, 61, 1)',
               }]
           },
           options: {
@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
                       beginAtZero: true,
                       max: 10,
                       ticks: { display: false }, // Hide numbers for cleaner look
-                      grid: { color: '#e2e8f0' }
+                      grid: { color: 'rgba(234, 231, 221, 0.12)' },
+                      angleLines: { color: 'rgba(234, 231, 221, 0.12)' },
+                      pointLabels: { color: '#eae7dd', font: { family: 'IBM Plex Mono', size: 11 } }
                   }
               },
               plugins: {

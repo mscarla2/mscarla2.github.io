@@ -1,55 +1,7 @@
-/* Build Log — quant terminal ledger theme.
-   Palette:
-     --bg      #12151c  page background (navy-charcoal, not pure black)
-     --surface #1b202b  raised surfaces (terminal window, entry hover)
-     --ink     #eae7dd  primary text (warm off-white, not stark white)
-     --muted   #8b93a1  secondary text / timestamps / labels
-     --amber   #e8a33d  signature accent (terminal prompt, links, headings)
-     --gain    #5b9279  positive numbers only
-     --loss    #c0524a  negative numbers only
-*/
-
-body.build-log-page {
-  --bg: #12151c;
-  --surface: #1b202b;
-  --ink: #eae7dd;
-  --muted: #8b93a1;
-  --amber: #e8a33d;
-  --gain: #5b9279;
-  --loss: #c0524a;
-
-  background: var(--bg);
-  color: var(--ink);
-  font-family: "IBM Plex Sans", sans-serif;
-  min-height: 100vh;
-}
-
-/* Navbar override — dark to match page, keeps Bulma structure/behavior */
-body.build-log-page .navbar {
-  background: var(--bg);
-  border-bottom: 1px solid rgba(234, 231, 221, 0.1);
-}
-body.build-log-page .navbar-item,
-body.build-log-page .navbar-item strong {
-  color: var(--ink) !important;
-  background: transparent !important;
-}
-body.build-log-page .navbar-item:hover {
-  color: var(--amber) !important;
-}
-body.build-log-page .navbar-burger span {
-  background-color: var(--ink);
-}
-body.build-log-page .button.is-light {
-  background: var(--surface);
-  color: var(--ink);
-  border: 1px solid rgba(234, 231, 221, 0.15);
-}
-body.build-log-page .button.is-link {
-  background: var(--amber);
-  color: var(--bg);
-  border: none;
-}
+/* Build Log — page-specific styling.
+   Shared tokens (--bg, --surface, --ink, --muted, --amber, --gain, --loss)
+   and base navbar/button dark styling now live in css/theme.css, which
+   this page also includes. Only Build-Log-only components live here. */
 
 .log-wrap {
   max-width: 720px;

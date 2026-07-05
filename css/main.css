@@ -14,14 +14,14 @@
 .geometry {
   position: absolute;
   border-radius: 50%;
-  background: rgba(50, 115, 220, 0.15); /* Bulma primary color, subtle */
+  background: rgba(232, 163, 61, 0.12); /* amber, subtle */
   animation: float 25s infinite linear;
   pointer-events: none;
 }
 
 .square {
   border-radius: 10%;
-  background: rgba(38, 166, 154, 0.15); /* Bulma info color, subtle */
+  background: rgba(91, 146, 121, 0.12); /* gain green, subtle */
 }
 
 .triangle {
@@ -29,7 +29,7 @@
   height: 0;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-bottom: 60px solid rgba(255, 215, 0, 0.15); /* Bulma warning color, subtle */
+  border-bottom: 60px solid rgba(139, 147, 161, 0.15); /* muted, subtle */
   border-radius: 0;
   background: none;
 }
@@ -55,7 +55,7 @@ margin: 20px auto;
 border-radius: 50%;
 width: 300px;
 height: 300px;
-border: 5px solid #040404;
+border: 5px solid var(--surface);
 z-index: 2;
 position: relative;
 }

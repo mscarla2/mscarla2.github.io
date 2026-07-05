@@ -1,0 +1,102 @@
+/* Site-wide "quant terminal ledger" theme.
+   Same palette everywhere so Home / Resume / Backtest / Build Log read as
+   one identity instead of a light site with one dark page bolted on.
+
+     --bg      #12151c  page background (navy-charcoal, not pure black)
+     --surface #1b202b  raised surfaces (cards, nav, terminal chrome)
+     --ink     #eae7dd  primary text (warm off-white, not stark white)
+     --muted   #8b93a1  secondary text / timestamps / labels
+     --amber   #e8a33d  signature accent (headings, links, primary actions)
+     --gain    #5b9279  positive numbers only
+     --loss    #c0524a  negative numbers only
+*/
+
+:root {
+  --bg: #12151c;
+  --surface: #1b202b;
+  --surface-2: #232a38;
+  --ink: #eae7dd;
+  --muted: #8b93a1;
+  --amber: #e8a33d;
+  --gain: #5b9279;
+  --loss: #c0524a;
+  --border: rgba(234, 231, 221, 0.1);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+}
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+/* Typography — Bulma's default title/subtitle color is near-black */
+.title, .subtitle,
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ink) !important;
+}
+.has-text-grey,
+.has-text-grey-dark,
+.has-text-grey-light {
+  color: var(--muted) !important;
+}
+.has-text-link {
+  color: var(--amber) !important;
+}
+a {
+  color: var(--amber);
+}
+
+/* Navbar — dark everywhere, consistent across pages */
+.navbar {
+  background: var(--bg) !important;
+  border-bottom: 1px solid var(--border);
+}
+.navbar-item,
+.navbar-item strong,
+.navbar-link {
+  color: var(--ink) !important;
+  background: transparent !important;
+}
+.navbar-item:hover,
+.navbar-link:hover {
+  color: var(--amber) !important;
+}
+.navbar-burger span {
+  background-color: var(--ink);
+}
+.navbar-menu {
+  background: var(--bg);
+}
+
+/* Buttons */
+.button.is-light {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+.button.is-light:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.button.is-link,
+.button.is-primary {
+  background: var(--amber);
+  color: var(--bg);
+  border: none;
+}
+.button.is-link:hover,
+.button.is-primary:hover {
+  background: #f0b25a;
+  color: var(--bg);
+}
+.button.is-danger.is-light {
+  background: var(--surface);
+  color: var(--loss);
+  border: 1px solid var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; }
+}
