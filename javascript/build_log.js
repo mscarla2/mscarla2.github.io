@@ -1,9 +1,8 @@
-const PNL_SOURCE = "../data/pnl_demo.json"; // swap to ../data/pnl.json once real history has enough days
+const PNL_SOURCE = "../data/pnl.json";
 
 async function loadTerminal() {
   const statLine = document.getElementById("terminal-stats");
   const canvas = document.getElementById("pnl-chart");
-  const disclaimer = document.getElementById("terminal-disclaimer");
   if (!statLine || !canvas) return;
 
   try {
@@ -33,12 +32,6 @@ async function loadTerminal() {
         <span class="stat-value neutral">${data.start_date}</span>
       </div>
     `;
-
-    if (disclaimer) {
-      disclaimer.textContent = data.demo
-        ? "// placeholder numbers for layout — real paper-trading history is still short"
-        : `// live paper-trading result, updated ${data.as_of}`;
-    }
 
     new Chart(canvas.getContext("2d"), {
       type: "line",
