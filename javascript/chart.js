@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
               responsive: true,
               maintainAspectRatio: false,
               layout: {
-                  padding: { top: 24, bottom: 24, left: 40, right: 40 }
+                  padding: { top: 12, bottom: 12, left: 12, right: 12 }
               },
               scales: {
                   r: {
