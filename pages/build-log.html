@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Log - Marco Scarlata</title>
+  <meta name="description" content="A running build log of Strategy Arena, Marco Scarlata's systematic trading research project.">
+  <link rel="icon" type="image/jpeg" href="../images/Profile.jpeg">
+
+  <meta property="og:title" content="Build Log - Marco Scarlata">
+  <meta property="og:description" content="A running build log of Strategy Arena, a systematic trading research project.">
+  <meta property="og:image" content="https://marcoscarlata.com/images/Profile.jpeg">
+  <meta property="og:url" content="https://marcoscarlata.com/pages/build-log.html">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/4636762066.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="../css/build-log.css">
+</head>
+
+<body class="build-log-page">
+  <div id="navbar"></div>
+
+  <div class="log-wrap">
+    <p class="log-page-title"><span class="prompt">$</span> cd strategy-arena &amp;&amp; cat build-log.md</p>
+    <h1 class="log-page-heading">Build Log</h1>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-title">strategy-arena — paper-trading status</span>
+      </div>
+      <div class="terminal-body">
+        <p class="terminal-prompt"><span class="prompt">$</span> status --live<span class="cursor"></span></p>
+        <div id="terminal-stats" class="terminal-stats">
+          <span class="log-loading">Loading&hellip;</span>
+        </div>
+        <canvas id="pnl-chart" height="70"></canvas>
+        <p id="terminal-disclaimer" class="terminal-disclaimer"></p>
+      </div>
+    </div>
+
+    <div id="log-entries">
+      <p class="log-loading">Loading entries&hellip;</p>
+    </div>
+  </div>
+
+  <script src="../javascript/nav.js"></script>
+  <script src="../javascript/build_log.js"></script>
+</body>
+
+</html>
