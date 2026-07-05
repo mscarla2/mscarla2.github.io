@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
       new Chart(ctx.getContext('2d'), {
           type: 'radar',
           data: {
-              labels: ['OS', 'C++', 'TFLite', 'TinyML', 'Algo Trading', 'Sys Design', 'Korean'],
+              labels: ['OS', 'C++', 'TinyML', 'Low-Latency Execution', 'Deep Learning', 'Reinforcement Learning', 'Signal Processing', 'Statistical Modeling', 'Numerical Optimization'],
               datasets: [{
                   label: 'Proficiency',
-                  data: [9, 6, 6, 6, 9, 7, 3],
+                  data: [9, 6, 6, 5, 6, 5, 7, 6, 6],
                   backgroundColor: 'rgba(232, 163, 61, 0.2)', // amber theme
                   borderColor: 'rgba(232, 163, 61, 1)',
                   borderWidth: 2,

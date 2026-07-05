@@ -49,6 +49,18 @@ body {
   margin: 0;
 }
 
+/* Personal Projects */
+.project-blurb {
+  font-size: 0.9rem;
+  color: var(--ink);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+.project-blurb a {
+  color: var(--amber);
+  text-decoration: underline;
+}
+
 /* --- EDUCATION CARD STYLING (NEW) --- */
 .edu-header {
   display: flex;
