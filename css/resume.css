@@ -241,6 +241,30 @@ body {
 }
 
 /* --- FEATURED WORK STYLING --- */
+.hero-feature-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 1.5rem;
+  background: var(--surface-2);
+  color: var(--amber);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero-feature-banner i.fa-hand-sparkles {
+  font-size: 1.4rem;
+}
+.hero-feature-banner i.fa-arrow-up-right-from-square {
+  font-size: 0.75rem;
+  margin-left: 0.3rem;
+}
+.hero-feature-banner:hover {
+  color: #f0b25a;
+}
+
 .hero-feature {
   background: var(--surface);
   border-radius: 12px;
