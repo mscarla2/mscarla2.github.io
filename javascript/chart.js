@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
               labels: ['OS', 'C++', 'TinyML', ['Low-Latency', 'Execution'], ['Deep', 'Learning'], ['Reinforcement', 'Learning'], ['Signal', 'Processing'], ['Statistical', 'Modeling'], ['Numerical', 'Optimization']],
               datasets: [{
                   label: 'Proficiency',
-                  data: [9, 6, 6, 5, 6, 5, 7, 6, 6],
+                  data: [5, 6, 6, 8, 6, 5, 7, 6, 6],
                   backgroundColor: 'rgba(232, 163, 61, 0.2)', // amber theme
                   borderColor: 'rgba(232, 163, 61, 1)',
                   borderWidth: 2,
@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
           options: {
               responsive: true,
               maintainAspectRatio: false,
+              layout: {
+                  padding: { top: 24, bottom: 24, left: 40, right: 40 }
+              },
               scales: {
                   r: {
                       beginAtZero: true,
