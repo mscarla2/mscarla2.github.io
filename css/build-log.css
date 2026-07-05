@@ -157,14 +157,6 @@ body.build-log-page .button.is-link {
 .terminal-stat .stat-value.loss { color: var(--loss); }
 .terminal-stat .stat-value.neutral { color: var(--ink); }
 
-.terminal-disclaimer {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.68rem;
-  color: var(--muted);
-  opacity: 0.75;
-  margin-top: 0.75rem;
-}
-
 /* Log entries — hairline ledger, no cards */
 .log-entry {
   padding: 1.75rem 0;
