@@ -1,0 +1,17 @@
+{
+  "as_of": "2026-07-04",
+  "start_date": "2026-07-01",
+  "total_return_pct": -1.482,
+  "n_strategies_live": 1,
+  "days_live": 2,
+  "equity_curve": [
+    {
+      "date": "2026-07-01",
+      "value": 0.99451
+    },
+    {
+      "date": "2026-07-02",
+      "value": 0.98518
+    }
+  ]
+}

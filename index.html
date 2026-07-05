@@ -61,10 +61,37 @@
         </div>
     </section>
 
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-3 has-text-centered">Now Building</h2>
+            <div class="columns is-centered">
+                <div class="card" style="max-width: 700px; width: 100%;">
+                    <div class="card-content">
+                        <p class="title is-5">Strategy Arena</p>
+                        <p class="subtitle is-6">Systematic trading research platform (private repo)</p>
+                        <div class="content">
+                            <p>
+                                A multi-strategy trading system built around a genetic-programming pipeline that
+                                evolves strategies against walk-forward out-of-sample validation, alongside a
+                                pairs-trading engine (Kalman-filtered OU processes) and a regime-detection layer.
+                                Focus areas: avoiding look-ahead bias, multi-objective (NSGA-II) fitness, and strict
+                                OOS holdout discipline before anything goes live.
+                            </p>
+                            <p id="pnl-status" class="has-text-grey">Loading live paper-trading results&hellip;</p>
+                        </div>
+                        <canvas id="pnl-chart" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Font Awesome for icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Correct paths for JS files loaded from the root -->
     <script src="javascript/nav.js"></script>
     <script src="javascript/home.js"></script>
+    <script src="javascript/pnl_chart.js"></script>
 </body>
 </html>
