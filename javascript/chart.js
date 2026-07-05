@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
       new Chart(ctx.getContext('2d'), {
           type: 'radar',
           data: {
-              labels: ['OS', 'C++', 'TinyML', 'Low-Latency Execution', 'Deep Learning', 'Reinforcement Learning', 'Signal Processing', 'Statistical Modeling', 'Numerical Optimization'],
+              labels: ['OS', 'C++', 'TinyML', ['Low-Latency', 'Execution'], ['Deep', 'Learning'], ['Reinforcement', 'Learning'], ['Signal', 'Processing'], ['Statistical', 'Modeling'], ['Numerical', 'Optimization']],
               datasets: [{
                   label: 'Proficiency',
                   data: [9, 6, 6, 5, 6, 5, 7, 6, 6],
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       ticks: { display: false }, // Hide numbers for cleaner look
                       grid: { color: 'rgba(234, 231, 221, 0.12)' },
                       angleLines: { color: 'rgba(234, 231, 221, 0.12)' },
-                      pointLabels: { color: '#eae7dd', font: { family: 'IBM Plex Mono', size: 11 } }
+                      pointLabels: { color: '#eae7dd', font: { family: 'IBM Plex Mono', size: 10 } }
                   }
               },
               plugins: {
