@@ -62,9 +62,7 @@ async function runBacktest() {
     alert("Please select a strategy.");
     return;
   }
-  console.log("Running backtest with config:", config);
   const results = await window.BacktestEngine.run(config);
-  console.log("Backtest results:", results);
 
   document.getElementById("results-title").textContent =
     `Backtest Results: ${config.strategyObj.name} on ${config.asset}`;
