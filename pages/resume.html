@@ -153,13 +153,14 @@
                 <h2>Personal Projects</h2>
               </div>
               <p class="project-blurb">
-                <strong>Strategy Arena</strong> &mdash; an end-to-end systematic trading
-                platform: four independent live strategies (pattern-based intraday scanning,
-                breakout, genetic-programming-evolved factors, and Kalman-filtered pairs
-                trading), backed by its own regime-detection layer, portfolio-level risk
-                sizing, automated broker execution &amp; reconciliation, and a scheduler that
-                runs the whole pipeline unattended. Every strategy has to clear walk-forward
-                out-of-sample validation before it goes live. Code stays private; I keep a
+                <strong>Strategy Arena</strong>: A sandbox multi-strategy trading platform
+                that houses all of the bespoke research, execution and trading pipeline
+                iterative development that I've been doing. Currently I surface four
+                different trading strategies that are live generating their respective
+                PnLs and have so-far passed relevant testing methodologies (OOS Sharpe,
+                PnL, WFE, Pruned K-Fold, etc). There is also a portfolio and risk
+                management side, as well as a "self-healing" component that retrains
+                relevant models and demotes/promotes strategies as necessary. I keep a
                 running <a href="build-log.html">Build Log</a> of what I try, what breaks,
                 and what I learn along the way.
               </p>
